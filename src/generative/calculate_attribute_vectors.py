@@ -52,7 +52,7 @@ def main(args):
     vae = vae_def.Vae(args.latent_var_size)
     gen_image_size = vae.get_image_size()
 
-    with tf.Graph().as_default():
+    with tf.Graph().as_default(),tf.device('/device:GPU:0'):
         tf.set_random_seed(args.seed)
         
         image_list = facenet.get_image_paths(os.path.expanduser(args.data_dir))
