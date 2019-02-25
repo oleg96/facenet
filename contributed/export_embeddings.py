@@ -75,7 +75,7 @@ def main(args):
     label_strings = [name for name in classes if \
        os.path.isdir(os.path.join(path_exp, name))]
 
-    with tf.Graph().as_default():
+    with tf.Graph().as_default(),tf.device('/device:GPU:0'):
 
         with tf.Session() as sess:
 
@@ -135,7 +135,7 @@ def load_and_align_data(image_paths, image_size, margin, gpu_memory_fraction):
     factor = 0.709 # scale factor
 
     print('Creating networks and loading parameters')
-    with tf.Graph().as_default():
+    with tf.Graph().as_default(),tf.device('/device:GPU:0'):
         gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=gpu_memory_fraction)
         sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options, log_device_placement=False))
         with sess.as_default():
