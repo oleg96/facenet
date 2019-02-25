@@ -48,7 +48,7 @@ def main(args):
     vae = vae_def.Vae(args.latent_var_size)
     gen_image_size = vae.get_image_size()
 
-    with tf.Graph().as_default():
+    with tf.Graph().as_default(),tf.device('/device:GPU:0'):
         tf.set_random_seed(args.seed)
         
         images = tf.placeholder(tf.float32, shape=(None,gen_image_size,gen_image_size,3), name='input')
