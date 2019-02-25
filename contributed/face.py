@@ -126,7 +126,7 @@ class Detection:
         self.face_crop_margin = face_crop_margin
 
     def _setup_mtcnn(self):
-        with tf.Graph().as_default():
+        with tf.Graph().as_default(),tf.device('/device:GPU:0'):
             gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=gpu_memory_fraction)
             sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options, log_device_placement=False))
             with sess.as_default():
