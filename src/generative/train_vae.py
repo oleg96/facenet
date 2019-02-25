@@ -62,7 +62,7 @@ def main(args):
     src_path,_ = os.path.split(os.path.realpath(__file__))
     facenet.store_revision_info(src_path, model_dir, ' '.join(sys.argv))
     
-    with tf.Graph().as_default():
+    with tf.Graph().as_default(),tf.device('/device:GPU:0'):
         tf.set_random_seed(args.seed)
         global_step = tf.Variable(0, trainable=False)
         
