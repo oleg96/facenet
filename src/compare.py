@@ -39,7 +39,7 @@ import align.detect_face
 def main(args):
 
     images = load_and_align_data(args.image_files, args.image_size, args.margin, args.gpu_memory_fraction)
-    with tf.Graph().as_default():
+    with tf.Graph().as_default(),tf.device('/device:GPU:0'):
 
         with tf.Session() as sess:
       
