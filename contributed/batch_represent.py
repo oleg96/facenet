@@ -80,7 +80,7 @@ from six.moves import xrange
 
 def main(args):
 
-	with tf.Graph().as_default():
+	with tf.Graph().as_default(),tf.device('/device:GPU:0'):
 
 		with tf.Session() as sess:
 
