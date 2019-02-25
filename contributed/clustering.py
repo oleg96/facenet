@@ -210,7 +210,7 @@ def main(args):
     if not exists(args.output):
         makedirs(args.output)
 
-    with tf.Graph().as_default():
+    with tf.Graph().as_default(),tf.device('/device:GPU:0'):
         with tf.Session() as sess:
             image_paths = get_onedir(args.input)
             #image_list, label_list = facenet.get_image_paths_and_labels(train_set)
