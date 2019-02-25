@@ -41,7 +41,7 @@ from six import iteritems
 def main(args):
     dataset = facenet.get_dataset(args.dataset_dir)
   
-    with tf.Graph().as_default():
+    with tf.Graph().as_default(),tf.device('/device:GPU:0'):
       
         # Get a list of image paths and their labels
         image_list, label_list = facenet.get_image_paths_and_labels(dataset)
