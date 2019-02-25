@@ -78,7 +78,7 @@ def main(args):
         lfw_paths, actual_issame = lfw.get_paths(os.path.expanduser(args.lfw_dir), pairs)
         
     
-    with tf.Graph().as_default():
+    with tf.Graph().as_default(),tf.device('/device:GPU:0'):
         tf.set_random_seed(args.seed)
         global_step = tf.Variable(0, trainable=False)
 
